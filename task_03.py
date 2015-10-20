@@ -47,7 +47,7 @@ else:
     INTRATE = None
 
 if INTRATE is None:
-    TOTAL = None
+    TOTAL = int(round((PRINCIPAL * ((1 + (None / 12)) ** (12 * YEARS)))))
 else:
     CONVERT = decimal.Decimal(INTRATE) / 100
     TOTAL = int(round((PRINCIPAL * ((1 + (CONVERT / 12)) ** (12 * YEARS)))))
