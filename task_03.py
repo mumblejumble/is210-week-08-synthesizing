@@ -7,38 +7,37 @@ import decimal
 NAME = raw_input('What is your name? ')
 PRINCIPAL = int(raw_input('What is the principal of the loan? '))
 YEARS = int(raw_input('For how long is this being borrowed? '))
-PRE_QUALIFIED = raw_input('Are you pre-qualified? ')
-QUALIFIED = PRE_QUALIFIED.lower()[:1]
+PRE_QUALIFIED = raw_input('Are you pre-qualified? ').lower()[:1]
 
-if QUALIFIED == 'y':
+if PRE_QUALIFIED == 'y':
     if PRINCIPAL > 0 and PRINCIPAL <= 199999:
         if YEARS >= 1 and YEARS <= 15:
             IRATE = decimal.Decimal('0.0363')
-        elif YEARS <= 20:
+        elif YEARS >= 16 and YEARS <= 20:
             IRATE = decimal.Decimal('0.0404')
-        elif YEARS <= 30:
+        elif YEARS >= 21 and YEARS <= 30:
             IRATE = decimal.Decimal('0.0577')
         else:
             IRATE = None
-    elif PRINCIPAL <= 999999:
+    elif PRINCIPAL >= 200000 and PRINCIPAL <= 999999:
         if YEARS >= 1 and YEARS <= 15:
             IRATE = decimal.Decimal('0.0302')
-        elif YEARS <= 20:
+        elif YEARS >= 16 and YEARS <= 20:
             IRATE = decimal.Decimal('0.0327')
-        elif YEARS <= 30:
+        elif YEARS >= 21 and YEARS <= 30:
             IRATE = decimal.Decimal('0.0466')
         else:
             IRATE = None
     elif PRINCIPAL >= 1000000:
         if YEARS >= 1 and YEARS <= 15:
             IRATE = decimal.Decimal('0.0205')
-        elif YEARS <= 20:
+        elif YEARS >= 16 and YEARS <= 20:
             IRATE = decimal.Decimal('0.0262')
         else:
             IRATE = None
     else:
         IRATE = None
-elif QUALIFIED == 'n':
+elif PRE_QUALIFIED == 'n':
     if PRINCIPAL > 0 and PRINCIPAL <= 199999:
         if YEARS >= 1 and YEARS <= 15:
             IRATE = decimal.Decimal('0.0465')
