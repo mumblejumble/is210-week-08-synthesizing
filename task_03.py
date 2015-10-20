@@ -11,7 +11,7 @@ PRE_QUALIFIED = raw_input('Are you pre-qualified for this loan? ')
 QUALIFIED = PRE_QUALIFIED.upper()[:1]
 
 if QUALIFIED == 'Y':
-    if PRINCIPAL <= 199999:
+    if PRINCIPAL > 0 and PRINCIPAL <= 199999:
         if YEARS >= 1 and YEARS <= 15:
             INTRATE = decimal.Decimal('0.0363')
         elif YEARS <= 20:
@@ -68,5 +68,5 @@ print 'Loan Report For: {}'.format(NAME)
 print '-' * 60
 print '      Principle:{:>15}'.format(PRINCIPAL)
 print '      Duration:{:>13}'.format(YEARS)+'yrs'
-print '      Pre-qualified?:{:>10}'.format(QUALIFIED)
+print '      Pre-qualified?:{:>10}'.format(PRE_QUALIFIED)
 print '\n      Total:{:>19}'.format(TOTAL)
