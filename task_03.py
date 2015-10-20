@@ -68,5 +68,5 @@ print 'Loan Report For: {}'.format(NAME)
 print '-' * 60
 print '      Principle:{:>15}'.format(PRINCIPAL)
 print '      Duration:{:>13}'.format(YEARS)+'yrs'
-print '      Pre-qualified?:{:>10}'.format(PRE_QUALIFIED)
+print '      Pre-qualified?:{:>10}'.format(QUALIFIED)
 print '\n      Total:{:>19}'.format(TOTAL)
