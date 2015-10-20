@@ -13,44 +13,56 @@ QUALIFIED = PRE_QUALIFIED.upper()[:1]
 if QUALIFIED == 'Y':
     if PRINCIPAL <= 199999:
         if YEARS >= 1 and YEARS <= 15:
-            INTRATE = decimal.Decimal('3.63')
+            INTRATE = decimal.Decimal('0.0363')
         elif YEARS <= 20:
-            INTRATE = decimal.Decimal('4.04')
+            INTRATE = decimal.Decimal('0.0404')
         elif YEARS <= 30:
-            INTRATE = decimal.Decimal('5.77')
+            INTRATE = decimal.Decimal('0.0577')
+        else:
+            INTRATE = None
     elif PRINCIPAL <= 999999:
         if YEARS >= 1 and YEARS <= 15:
-            INTRATE = decimal.Decimal('3.02')
+            INTRATE = decimal.Decimal('0.0302')
         elif YEARS <= 20:
-            INTRATE = decimal.Decimal('3.27')
+            INTRATE = decimal.Decimal('0.0327')
         elif YEARS <= 30:
-            INTRATE = decimal.Decimal('4.66')
+            INTRATE = decimal.Decimal('0.0466')
+        else:
+            INTRATE = None
     elif PRINCIPAL >= 1000000:
         if YEARS >= 1 and YEARS <= 15:
-            INTRATE = decimal.Decimal('2.05')
+            INTRATE = decimal.Decimal('0.0205')
         elif YEARS <= 20:
-            INTRATE = decimal.Decimal('2.62')
+            INTRATE = decimal.Decimal('0.0262')
+        else:
+            INTRATE = None
 elif QUALIFIED == 'N':
     if PRINCIPAL <= 199999:
         if YEARS >= 1 and YEARS <= 15:
-            INTRATE = decimal.Decimal('4.65')
+            INTRATE = decimal.Decimal('0.0465')
         elif YEARS <= 20:
-            INTRATE = decimal.Decimal('4.98')
+            INTRATE = decimal.Decimal('0.0498')
         elif YEARS <= 30:
-            INTRATE = decimal.Decimal('6.39')
+            INTRATE = decimal.Decimal('0.0639')
+        else:
+            INTRATE = None
     elif PRINCIPAL <= 999999:
         if YEARS >= 1 and YEARS <= 15:
-            INTRATE = decimal.Decimal('3.98')
+            INTRATE = decimal.Decimal('0.0398')
         elif YEARS <= 20:
-            INTRATE = decimal.Decimal('4.08')
+            INTRATE = decimal.Decimal('0.0408')
+        else:
+            INTRATE = None
+    else:
+        INTRATE = None
 else:
     INTRATE = None
 
-if INTRATE is None:
-    TOTAL = int(round((PRINCIPAL * ((1 + (None / 12)) ** (12 * YEARS)))))
+if INTRATE == None:
+    TOTAL = None
 else:
-    CONVERT = decimal.Decimal(INTRATE) / 100
-    TOTAL = int(round((PRINCIPAL * ((1 + (CONVERT / 12)) ** (12 * YEARS)))))
+    DERATE = decimal.Decimal(INTRATE)
+    TOTAL = int(round(PRINCIPAL * (1 + (DERATE / 12)) ** (12 * YEARS)))
 
 print 'Loan Report For: {}'.format(NAME)
 print '-' * 60
