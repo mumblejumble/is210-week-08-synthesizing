@@ -10,7 +10,7 @@ YEARS = int(raw_input('For how long is this being borrowed? '))
 PRE_QUALIFIED = raw_input('Are you pre-qualified? ').lower()[:1]
 
 if PRE_QUALIFIED == 'y':
-    if PRINCIPAL <= 199999:
+    if PRINCIPAL > 0 and PRINCIPAL <= 199999:
         if YEARS >= 1 and YEARS <= 15:
             IRATE = decimal.Decimal('0.0363')
         elif YEARS >= 16 and YEARS <= 20:
@@ -38,7 +38,7 @@ if PRE_QUALIFIED == 'y':
     else:
         IRATE = None
 elif PRE_QUALIFIED == 'n':
-    if PRINCIPAL <= 199999:
+    if PRINCIPAL > 0 and PRINCIPAL <= 199999:
         if YEARS >= 1 and YEARS <= 15:
             IRATE = decimal.Decimal('0.0465')
         elif YEARS >= 16 and YEARS <= 20:
